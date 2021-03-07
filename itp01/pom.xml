@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>tycho.demo.itp01</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>${revision}${changelist}</version>
   <packaging>pom</packaging>
   <modules>
     <module>tycho.demo.itp01</module>
@@ -12,6 +12,8 @@
 
   <properties>
     <tycho-version>2.2.0</tycho-version>
+    <revision>1.0.0</revision>
+    <changelist>-SNAPSHOT</changelist>
   </properties>
 
   <repositories>
@@ -29,6 +31,31 @@
         <artifactId>tycho-maven-plugin</artifactId>
         <version>${tycho-version}</version>
         <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>1.2.2</version>
+        <configuration>
+          <updatePomFile>true</updatePomFile>
+          <flattenMode>resolveCiFriendliesOnly</flattenMode>
+        </configuration>
+        <executions>
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>flatten.clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

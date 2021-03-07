@@ -5,7 +5,7 @@
   <parent>
     <groupId>tycho.demo.itp01</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}${changelist}</version>
   </parent>
 
   <artifactId>tycho.demo.itp01.tests</artifactId>
